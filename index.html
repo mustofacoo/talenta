@@ -46,18 +46,19 @@
             --shadow-xl: 0 15px 35px rgba(0, 0, 0, 0.1);
             
             /* Border radius */
-            --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 16px;
-            --radius-xl: 20px;
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
         }
 
         body {
             font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+            line-height: 1.5;
             color: var(--text-dark);
             background: var(--lighter-gray);
             scroll-behavior: smooth;
+            font-size: 14px;
         }
 
         .app {
@@ -68,42 +69,14 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 16px;
         }
 
-        /* Image Utilities */
-        .img-responsive {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            border-radius: var(--radius-lg);
-        }
-
-        .img-circle {
-            border-radius: 50%;
-        }
-
-        .img-shadow {
-            box-shadow: var(--shadow-lg);
-        }
-
-        /* Loading placeholder for images */
-        .img-loading {
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-        }
-
-        @keyframes loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-
-        /* Improved Loading Animation */
+        /* Loading Animation */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -114,7 +87,7 @@
         @keyframes slideInLeft {
             from {
                 opacity: 0;
-                transform: translateX(-30px);
+                transform: translateX(-20px);
             }
             to {
                 opacity: 1;
@@ -125,7 +98,7 @@
         @keyframes slideInRight {
             from {
                 opacity: 0;
-                transform: translateX(30px);
+                transform: translateX(20px);
             }
             to {
                 opacity: 1;
@@ -133,7 +106,7 @@
             }
         }
 
-        /* Navigation - Enhanced */
+        /* NAVBAR */
         .navbar {
             position: fixed;
             top: 0;
@@ -155,23 +128,23 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 2rem;
+            padding: 0.8rem 1.5rem;
             position: relative;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-size: 1.5rem;
+            gap: 8px;
+            font-size: 1.2rem;
             font-weight: 700;
             color: var(--primary-green);
             z-index: 1001;
         }
 
         .logo img {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             object-fit: contain;
             border-radius: var(--radius-sm);
             transition: transform 0.3s ease;
@@ -182,8 +155,8 @@
         }
 
         .logo-placeholder {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             background: var(--gradient-primary);
             border-radius: var(--radius-sm);
             display: flex;
@@ -191,19 +164,19 @@
             justify-content: center;
             color: white;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1rem;
             box-shadow: var(--shadow-md);
         }
 
         .logo i {
             color: var(--secondary-green);
-            font-size: 1.8rem;
+            font-size: 1.4rem;
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1.5rem;
             align-items: center;
         }
 
@@ -211,10 +184,10 @@
             text-decoration: none;
             color: var(--text-dark);
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
             position: relative;
-            padding: 0.7rem 1rem;
+            padding: 0.5rem 0.8rem;
             border-radius: var(--radius-md);
         }
 
@@ -234,10 +207,10 @@
             display: none;
             background: none;
             border: none;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             cursor: pointer;
             color: var(--text-dark);
-            padding: 0.5rem;
+            padding: 0.4rem;
             border-radius: var(--radius-sm);
             transition: all 0.3s ease;
             z-index: 1001;
@@ -248,15 +221,15 @@
             color: var(--primary-green);
         }
 
-        /* Hero Section - Enhanced with Background Image Support */
+        /* HERO SECTION */
         .hero-section {
             background: var(--gradient-primary);
-            padding: 140px 0 100px;
+            padding: 100px 0 60px;
             text-align: center;
             position: relative;
             overflow: hidden;
             color: white;
-            min-height: 70vh;
+            min-height: 60vh;
             display: flex;
             align-items: center;
         }
@@ -290,29 +263,29 @@
         }
 
         .hero h1 {
-            font-size: clamp(2.2rem, 5vw, 4rem);
+            font-size: clamp(1.8rem, 4vw, 3.5rem);
             font-weight: 700;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             line-height: 1.2;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         .hero p {
-            font-size: clamp(1.1rem, 3vw, 1.4rem);
-            margin-bottom: 3rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            margin-bottom: 2rem;
             max-width: 900px;
             margin-left: auto;
             margin-right: auto;
             opacity: 0.95;
-            line-height: 1.6;
+            line-height: 1.5;
             font-weight: 300;
         }
 
         .hero-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 4rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin: 2.5rem 0;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
@@ -320,7 +293,7 @@
 
         .stat-item {
             background: rgba(255, 255, 255, 0.15);
-            padding: 2rem 1.5rem;
+            padding: 1.5rem 1rem;
             border-radius: var(--radius-lg);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -328,42 +301,42 @@
         }
 
         .stat-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             background: rgba(255, 255, 255, 0.2);
         }
 
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
             color: var(--pale-green);
             margin-bottom: 0.5rem;
         }
 
         .stat-label {
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             opacity: 0.9;
             font-weight: 300;
         }
 
         .cta-buttons {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 3rem;
+            margin-top: 2rem;
         }
 
         .cta-button {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
             background: var(--gradient-gray);
             color: white;
-            padding: 16px 32px;
+            padding: 12px 24px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: var(--shadow-lg);
             border: none;
@@ -371,7 +344,7 @@
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
+            transform: translateY(-2px);
             box-shadow: var(--shadow-xl);
             background: var(--gradient-primary);
         }
@@ -386,10 +359,10 @@
             background: rgba(255, 255, 255, 0.3);
         }
 
-        /* Banner Slider - Enhanced with Image Support */
+        /* BANNER SLIDER */
         .banner-slider {
             position: relative;
-            height: 450px;
+            height: 300px;
             overflow: hidden;
             background: var(--light-gray);
             margin: 0;
@@ -410,7 +383,7 @@
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 600;
             background-size: cover;
             background-position: center;
@@ -440,25 +413,25 @@
 
         .slide-content {
             text-align: center;
-            max-width: 700px;
-            padding: 3rem 2rem;
+            max-width: 600px;
+            padding: 2rem 1.5rem;
             position: relative;
             z-index: 3;
             animation: fadeInUp 0.8s ease-out;
         }
 
         .slide-title {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            margin-bottom: 1rem;
             font-weight: 700;
             color: white;
             text-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }
 
         .slide-description {
-            font-size: 1.2rem;
+            font-size: 1rem;
             opacity: 0.95;
-            line-height: 1.7;
+            line-height: 1.5;
             text-shadow: 0 1px 4px rgba(0,0,0,0.3);
             font-weight: 300;
         }
@@ -477,7 +450,7 @@
         }
 
         .slide-placeholder i {
-            font-size: 4rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
             opacity: 0.7;
         }
@@ -489,8 +462,8 @@
             background: rgba(255, 255, 255, 0.9);
             border: none;
             color: var(--primary-green);
-            font-size: 1.5rem;
-            padding: 16px 20px;
+            font-size: 1.2rem;
+            padding: 12px 16px;
             cursor: pointer;
             border-radius: 50%;
             transition: all 0.3s ease;
@@ -506,26 +479,26 @@
         }
 
         .slider-nav.prev {
-            left: 30px;
+            left: 20px;
         }
 
         .slider-nav.next {
-            right: 30px;
+            right: 20px;
         }
 
         .slider-dots {
             position: absolute;
-            bottom: 30px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 12px;
+            gap: 10px;
             z-index: 4;
         }
 
         .dot {
-            width: 14px;
-            height: 14px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.5);
             cursor: pointer;
@@ -534,15 +507,15 @@
 
         .dot.active {
             background: white;
-            transform: scale(1.3);
-            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+            transform: scale(1.2);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
         }
 
-        /* Donation Highlight - Enhanced */
+        /* DONATION HIGHLIGHT */
         .donation-highlight {
             background: var(--gradient-primary);
             color: white;
-            padding: 5rem 0;
+            padding: 4rem 0;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -561,30 +534,30 @@
 
         .donation-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
             align-items: center;
             position: relative;
             z-index: 2;
         }
 
         .donation-text h2 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
             font-weight: 700;
         }
 
         .donation-amount {
-            font-size: 3.5rem;
+            font-size: 2.8rem;
             font-weight: 700;
             color: var(--pale-green);
-            margin: 2rem 0;
+            margin: 1.5rem 0;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         .donation-box {
             background: rgba(255, 255, 255, 0.15);
-            padding: 3rem 2rem;
+            padding: 2.5rem 1.5rem;
             border-radius: var(--radius-xl);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -592,10 +565,10 @@
         }
 
         .qr-code {
-            width: 220px;
-            height: 220px;
+            width: 180px;
+            height: 180px;
             background: white;
-            margin: 2rem auto;
+            margin: 1.5rem auto;
             border-radius: var(--radius-lg);
             display: flex;
             align-items: center;
@@ -618,28 +591,28 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
             color: var(--medium-gray);
             text-align: center;
-            padding: 1.5rem;
+            padding: 1rem;
         }
 
         .qr-placeholder i {
-            font-size: 3.5rem;
+            font-size: 3rem;
             color: var(--accent-green);
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .bank-info {
-            font-size: 1.3rem;
-            margin: 1.5rem 0;
+            font-size: 1.1rem;
+            margin: 1rem 0;
             font-weight: 600;
             color: var(--pale-green);
         }
 
-        /* Sections - Enhanced */
+        /* SECTIONS */
         .section {
-            padding: 100px 0;
+            padding: 60px 0;
             position: relative;
         }
 
@@ -652,10 +625,10 @@
         }
 
         .section h2 {
-            font-size: 3rem;
+            font-size: 2.2rem;
             font-weight: 700;
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 2.5rem;
             color: var(--primary-green);
             position: relative;
         }
@@ -663,38 +636,38 @@
         .section h2::after {
             content: '';
             position: absolute;
-            bottom: -15px;
+            bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 120px;
-            height: 4px;
+            width: 100px;
+            height: 3px;
             background: var(--gradient-secondary);
             border-radius: 2px;
         }
 
         .section p {
-            font-size: 1.2rem;
-            line-height: 1.8;
+            font-size: 1.1rem;
+            line-height: 1.6;
             color: var(--text-light);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             text-align: center;
             max-width: 900px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        /* Cards - Enhanced */
+        /* CARDS */
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-            margin-top: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2.5rem;
         }
 
         .card {
             background: white;
             border-radius: var(--radius-xl);
-            padding: 3rem 2rem;
+            padding: 2rem 1.5rem;
             box-shadow: var(--shadow-md);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid var(--border-light);
@@ -708,37 +681,37 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
+            height: 3px;
             background: var(--gradient-secondary);
         }
 
         .card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-5px);
             box-shadow: var(--shadow-xl);
             border-color: var(--light-green);
         }
 
         .card-icon {
-            font-size: 3.5rem;
+            font-size: 3rem;
             color: var(--secondary-green);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             text-align: center;
         }
 
         .card-image {
             width: 100%;
-            height: 200px;
+            height: 160px;
             object-fit: cover;
             border-radius: var(--radius-lg);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             box-shadow: var(--shadow-sm);
         }
 
         .card h3 {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             font-weight: 600;
             color: var(--primary-green);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             text-align: center;
         }
 
@@ -748,11 +721,12 @@
         }
 
         .card li {
-            padding: 0.8rem 0;
+            padding: 0.6rem 0;
             position: relative;
-            padding-left: 2rem;
+            padding-left: 1.5rem;
             color: var(--text-light);
-            line-height: 1.6;
+            line-height: 1.5;
+            font-size: 0.95rem;
         }
 
         .card li::before {
@@ -761,36 +735,36 @@
             left: 0;
             color: var(--accent-green);
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
-        /* Facilities Grid - Enhanced */
+        /* FACILITIES GRID */
         .facilities-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
         .facility-item {
             background: white;
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: var(--radius-lg);
             box-shadow: var(--shadow-sm);
             transition: all 0.3s ease;
-            border-left: 4px solid var(--accent-green);
+            border-left: 3px solid var(--accent-green);
             position: relative;
         }
 
         .facility-item:hover {
-            transform: translateX(8px);
+            transform: translateX(5px);
             box-shadow: var(--shadow-md);
             border-left-color: var(--secondary-green);
         }
 
         .facility-item strong {
             color: var(--primary-green);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
         }
 
@@ -798,36 +772,37 @@
             color: var(--text-light);
             margin: 0;
             text-align: left;
+            font-size: 0.95rem;
         }
 
         .facility-image {
             width: 100%;
-            height: 150px;
+            height: 120px;
             object-fit: cover;
             border-radius: var(--radius-md);
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
-        /* Progress Section - Enhanced */
+        /* PROGRESS SECTION */
         .progress-section {
             background: white;
-            padding: 3rem;
+            padding: 2rem;
             border-radius: var(--radius-xl);
-            margin: 3rem 0;
+            margin: 2rem 0;
             box-shadow: var(--shadow-lg);
             border: 1px solid var(--border-light);
         }
 
         .progress-header {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
             text-align: center;
         }
 
         .progress-stat {
-            padding: 1.5rem;
+            padding: 1rem;
             background: var(--lighter-gray);
             border-radius: var(--radius-lg);
             transition: all 0.3s ease;
@@ -835,18 +810,18 @@
 
         .progress-stat:hover {
             background: var(--pale-green);
-            transform: translateY(-3px);
+            transform: translateY(-2px);
         }
 
         .progress-stat h4 {
             color: var(--primary-green);
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
             font-weight: 600;
         }
 
         .progress-number {
-            font-size: 2rem;
+            font-size: 1.6rem;
             font-weight: 700;
             color: var(--secondary-green);
             margin-bottom: 0.5rem;
@@ -854,15 +829,15 @@
 
         .progress-label {
             color: var(--medium-gray);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .progress-bar-container {
             background: var(--light-gray);
             border-radius: 25px;
-            height: 35px;
+            height: 30px;
             overflow: hidden;
-            margin: 2rem 0;
+            margin: 1.5rem 0;
             position: relative;
             box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
         }
@@ -899,33 +874,32 @@
             transform: translate(-50%, -50%);
             font-weight: 700;
             color: var(--primary-gray);
-            font-size: 1rem;
+            font-size: 0.9rem;
             text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
         }
 
-        /* Timeline - Enhanced */
         .timeline-item {
             display: flex;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-            padding: 1.5rem;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
             background: var(--lighter-gray);
             border-radius: var(--radius-lg);
-            border-left: 4px solid var(--accent-green);
+            border-left: 3px solid var(--accent-green);
             transition: all 0.3s ease;
         }
 
         .timeline-item:hover {
             background: white;
-            transform: translateX(8px);
+            transform: translateX(5px);
             box-shadow: var(--shadow-sm);
         }
 
         .timeline-date {
             font-weight: 600;
             color: var(--secondary-green);
-            min-width: 90px;
-            font-size: 0.95rem;
+            min-width: 80px;
+            font-size: 0.9rem;
         }
 
         .timeline-content {
@@ -936,107 +910,67 @@
             font-weight: 700;
             color: var(--primary-green);
             margin-bottom: 0.5rem;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .timeline-description {
             color: var(--text-light);
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        /* Donor Stats - Enhanced */
-        .donor-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
-            padding: 2rem;
-            background: var(--gradient-light);
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--border-light);
-        }
-
-        .donor-stat-item {
-            text-align: center;
-            padding: 1.5rem 1rem;
-            background: white;
-            border-radius: var(--radius-md);
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .donor-stat-item:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .donor-stat-number {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--secondary-green);
-            margin-bottom: 0.5rem;
-        }
-
-        .donor-stat-label {
-            color: var(--medium-gray);
             font-size: 0.9rem;
-            font-weight: 500;
+            line-height: 1.4;
         }
 
-        /* Gallery - Enhanced */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .gallery-item {
+        /* GALLERY SLIDER - NEW IMPROVED VERSION */
+        .gallery-slider {
             position: relative;
-            border-radius: var(--radius-lg);
+            background: var(--lighter-gray);
+            border-radius: var(--radius-xl);
             overflow: hidden;
-            box-shadow: var(--shadow-md);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            background: white;
-            aspect-ratio: 4/3;
+            box-shadow: var(--shadow-lg);
+            margin-top: 2rem;
         }
 
-        .gallery-item:hover {
-            transform: scale(1.03);
-            box-shadow: var(--shadow-xl);
+        .gallery-slider-container {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .gallery-image {
+        .gallery-slide {
+            min-width: 100%;
+            position: relative;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+        }
+
+        .gallery-slide-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease;
         }
 
-        .gallery-item:hover .gallery-image {
-            transform: scale(1.1);
+        .gallery-slide:hover .gallery-slide-image {
+            transform: scale(1.05);
         }
 
-        .gallery-placeholder {
+        .gallery-slide-placeholder {
             width: 100%;
             height: 100%;
             background: var(--gradient-secondary);
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: 600;
-            flex-direction: column;
-            gap: 12px;
         }
 
-        .gallery-placeholder i {
-            font-size: 3rem;
+        .gallery-slide-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
             opacity: 0.8;
         }
 
-        .gallery-caption {
+        .gallery-slide-content {
             position: absolute;
             bottom: 0;
             left: 0;
@@ -1044,74 +978,167 @@
             background: linear-gradient(transparent, rgba(0,0,0,0.8));
             color: white;
             padding: 2rem 1.5rem 1.5rem;
+            text-align: center;
+        }
+
+        .gallery-slide-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .gallery-slide-description {
             font-size: 0.95rem;
-            text-align: center;
+            opacity: 0.9;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            color: var(--primary-green);
+            font-size: 1.4rem;
+            padding: 15px 18px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-md);
+            z-index: 10;
+        }
+
+        .gallery-nav:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+            color: var(--secondary-green);
+        }
+
+        .gallery-nav.prev {
+            left: 25px;
+        }
+
+        .gallery-nav.next {
+            right: 25px;
+        }
+
+        .gallery-dots {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .gallery-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .gallery-dot.active {
+            background: white;
+            transform: scale(1.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .gallery-counter {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
             font-weight: 500;
+            backdrop-filter: blur(10px);
+            z-index: 10;
         }
 
-        /* About Section - Enhanced */
-        .about-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 4rem;
-            margin-top: 4rem;
-            align-items: center;
+        /* THUMBNAIL NAVIGATION */
+        .gallery-thumbnails {
+            display: flex;
+            gap: 8px;
+            margin-top: 1rem;
+            padding: 1rem;
+            overflow-x: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-green) var(--light-gray);
         }
 
-        .about-text {
-            text-align: left;
+        .gallery-thumbnails::-webkit-scrollbar {
+            height: 6px;
         }
 
-        .about-text p {
-            text-align: left;
-            margin-bottom: 1.5rem;
+        .gallery-thumbnails::-webkit-scrollbar-track {
+            background: var(--light-gray);
+            border-radius: 3px;
         }
 
-        .about-image {
-            text-align: center;
+        .gallery-thumbnails::-webkit-scrollbar-thumb {
+            background: var(--accent-green);
+            border-radius: 3px;
         }
 
-        .about-image img {
+        .gallery-thumbnail {
+            min-width: 80px;
+            height: 60px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .gallery-thumbnail:hover {
+            transform: scale(1.05);
+            border-color: var(--accent-green);
+        }
+
+        .gallery-thumbnail.active {
+            border-color: var(--primary-green);
+            transform: scale(1.1);
+        }
+
+        .gallery-thumbnail img {
             width: 100%;
-            max-width: 450px;
-            height: 350px;
+            height: 100%;
             object-fit: cover;
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-lg);
-            margin: 0 auto;
         }
 
-        .about-placeholder {
+        .gallery-thumbnail-placeholder {
             width: 100%;
-            max-width: 450px;
-            height: 350px;
+            height: 100%;
             background: var(--gradient-secondary);
-            border-radius: var(--radius-xl);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-weight: 600;
-            margin: 0 auto;
-            box-shadow: var(--shadow-lg);
+            font-size: 1.5rem;
         }
 
-        .about-placeholder i {
-            font-size: 5rem;
-            opacity: 0.8;
-        }
-
-        /* Team Section */
+        /* TEAM SECTION */
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
         .team-member {
             background: white;
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: var(--radius-lg);
             text-align: center;
             box-shadow: var(--shadow-md);
@@ -1119,49 +1146,49 @@
         }
 
         .team-member:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             box-shadow: var(--shadow-lg);
         }
 
         .team-photo {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             object-fit: cover;
-            margin: 0 auto 1.5rem;
-            border: 4px solid var(--light-green);
+            margin: 0 auto 1rem;
+            border: 3px solid var(--light-green);
         }
 
         .team-photo-placeholder {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             background: var(--gradient-secondary);
-            margin: 0 auto 1.5rem;
+            margin: 0 auto 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 2rem;
-            border: 4px solid var(--light-green);
+            font-size: 1.8rem;
+            border: 3px solid var(--light-green);
         }
 
-        /* Contact Section - Enhanced */
+        /* CONTACT SECTION */
         .contact-section {
             background: var(--gradient-light);
-            padding: 100px 0;
+            padding: 60px 0;
         }
 
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
-            margin-top: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
         .contact-item {
             background: white;
-            padding: 3rem 2rem;
+            padding: 2rem 1.5rem;
             border-radius: var(--radius-lg);
             text-align: center;
             box-shadow: var(--shadow-md);
@@ -1170,26 +1197,27 @@
         }
 
         .contact-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             box-shadow: var(--shadow-lg);
         }
 
         .contact-item i {
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: var(--secondary-green);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .contact-item h3 {
             color: var(--primary-green);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
         }
 
         .contact-item p {
             color: var(--text-light);
             margin: 0;
             text-align: center;
+            font-size: 0.95rem;
         }
 
         .contact-item a {
@@ -1202,32 +1230,33 @@
             color: var(--primary-green);
         }
 
-        /* Footer - Enhanced */
+        /* FOOTER */
         .footer {
             background: var(--primary-gray);
             color: var(--light-gray);
-            padding: 4rem 0 1.5rem;
+            padding: 3rem 0 1rem;
             text-align: center;
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
 
         .footer-section h3 {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             color: var(--pale-green);
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
 
         .footer-section p, .footer-section a {
             color: var(--light-gray);
             text-decoration: none;
-            line-height: 1.7;
-            margin-bottom: 0.5rem;
+            line-height: 1.6;
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
         }
 
         .footer-section a:hover {
@@ -1236,22 +1265,23 @@
 
         .footer-bottom {
             border-top: 1px solid var(--secondary-gray);
-            padding-top: 2rem;
+            padding-top: 1.5rem;
             color: var(--light-gray);
+            font-size: 0.9rem;
         }
 
-        /* Floating Contact - Enhanced */
+        /* FLOATING CONTACT */
         .floating-contact {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 20px;
+            right: 20px;
             z-index: 1000;
         }
 
         .floating-contact a {
             background: linear-gradient(135deg, #25d366, #128c7e);
             color: white;
-            padding: 16px 24px;
+            padding: 12px 20px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
@@ -1260,29 +1290,29 @@
             animation: pulse 3s infinite;
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-size: 0.95rem;
+            gap: 8px;
+            font-size: 0.9rem;
         }
 
         .floating-contact a:hover {
-            transform: translateY(-3px);
+            transform: translateY(-2px);
             box-shadow: var(--shadow-xl);
         }
 
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+            70% { box-shadow: 0 0 0 8px rgba(37, 211, 102, 0); }
             100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
-        /* Budget Highlight - Enhanced */
+        /* BUDGET HIGHLIGHT */
         .budget-highlight {
             background: var(--gradient-primary);
             color: white;
-            padding: 3rem 2rem;
+            padding: 2.5rem 1.5rem;
             border-radius: var(--radius-xl);
             text-align: center;
-            margin: 3rem 0;
+            margin: 2rem 0;
             box-shadow: var(--shadow-xl);
             position: relative;
             overflow: hidden;
@@ -1300,17 +1330,26 @@
         }
 
         .budget-amount {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            margin: 1.5rem 0;
+            margin: 1rem 0;
             color: var(--pale-green);
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
-        /* Responsive Design - Enhanced */
-        @media (max-width: 1024px) {
+        /* ===============================
+           RESPONSIVE DESIGN
+           ===============================
+        */
+        
+        /* Tablet - 768px and up */
+        @media (min-width: 768px) {
+            body {
+                font-size: 15px;
+            }
+            
             .container {
-                padding: 0 24px;
+                padding: 0 20px;
             }
             
             .section {
@@ -1320,20 +1359,83 @@
             .hero-section {
                 padding: 120px 0 80px;
             }
+
+            .gallery-nav {
+                font-size: 1.6rem;
+                padding: 18px 22px;
+            }
+
+            .gallery-nav.prev {
+                left: 30px;
+            }
+
+            .gallery-nav.next {
+                right: 30px;
+            }
+
+            .gallery-thumbnails {
+                gap: 12px;
+            }
+
+            .gallery-thumbnail {
+                min-width: 100px;
+                height: 75px;
+            }
         }
 
+        /* Desktop - 1024px and up */
+        @media (min-width: 1024px) {
+            body {
+                font-size: 16px;
+            }
+            
+            .container {
+                padding: 0 24px;
+            }
+            
+            .section {
+                padding: 100px 0;
+            }
+            
+            .hero-section {
+                padding: 140px 0 100px;
+                min-height: 70vh;
+            }
+
+            .gallery-slide {
+                aspect-ratio: 21/9;
+            }
+
+            .gallery-nav {
+                font-size: 1.8rem;
+                padding: 20px 25px;
+            }
+
+            .gallery-thumbnails {
+                gap: 15px;
+                padding: 1.5rem;
+            }
+
+            .gallery-thumbnail {
+                min-width: 120px;
+                height: 90px;
+            }
+        }
+
+        /* MOBILE OPTIMIZATIONS - 768px and below */
         @media (max-width: 768px) {
+            /* NAVIGATION */
             .nav-menu {
                 position: fixed;
-                top: 80px;
+                top: 65px;
                 left: -100%;
                 width: 100%;
-                height: calc(100vh - 80px);
+                height: calc(100vh - 65px);
                 background: rgba(255, 255, 255, 0.98);
                 backdrop-filter: blur(30px);
                 flex-direction: column;
                 justify-content: flex-start;
-                padding: 3rem 2rem;
+                padding: 2rem 1.5rem;
                 transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                 box-shadow: var(--shadow-lg);
             }
@@ -1343,273 +1445,445 @@
             }
 
             .nav-link {
-                padding: 1rem 1.5rem;
+                padding: 0.8rem 1rem;
                 width: 100%;
                 text-align: center;
                 border-radius: var(--radius-md);
-                margin-bottom: 0.5rem;
+                margin-bottom: 0.4rem;
+                font-size: 1rem;
             }
 
             .mobile-menu-btn {
                 display: block;
             }
 
+            /* HERO SECTION */
             .hero-section {
-                padding: 100px 0 60px;
-                min-height: 60vh;
+                padding: 80px 0 50px;
+                min-height: 55vh;
             }
 
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
             }
 
             .hero p {
-                font-size: 1.1rem;
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
             }
 
+            /* BANNER SLIDER */
             .banner-slider {
-                height: 350px;
+                height: 250px;
+            }
+
+            .slide-content {
+                padding: 1rem;
             }
 
             .slide-title {
-                font-size: 1.8rem;
+                font-size: 1.4rem;
+                margin-bottom: 0.8rem;
             }
 
             .slide-description {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
 
             .slider-nav {
-                font-size: 1.2rem;
-                padding: 12px 16px;
+                font-size: 1rem;
+                padding: 10px 12px;
             }
 
             .slider-nav.prev {
-                left: 15px;
+                left: 10px;
             }
 
             .slider-nav.next {
+                right: 10px;
+            }
+
+            /* GALLERY SLIDER MOBILE */
+            .gallery-nav {
+                font-size: 1.2rem;
+                padding: 12px 15px;
+            }
+
+            .gallery-nav.prev {
+                left: 15px;
+            }
+
+            .gallery-nav.next {
                 right: 15px;
             }
 
+            .gallery-counter {
+                top: 15px;
+                right: 15px;
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+
+            .gallery-dots {
+                bottom: 15px;
+                gap: 8px;
+            }
+
+            .gallery-dot {
+                width: 10px;
+                height: 10px;
+            }
+
+            .gallery-thumbnails {
+                gap: 6px;
+                padding: 0.8rem;
+            }
+
+            .gallery-thumbnail {
+                min-width: 60px;
+                height: 45px;
+            }
+
+            .gallery-slide-content {
+                padding: 1.5rem 1rem 1rem;
+            }
+
+            .gallery-slide-title {
+                font-size: 1.2rem;
+            }
+
+            .gallery-slide-description {
+                font-size: 0.85rem;
+            }
+
+            /* SECTIONS */
             .section {
-                padding: 60px 0;
+                padding: 40px 0;
             }
 
             .section h2 {
-                font-size: 2.2rem;
+                font-size: 1.8rem;
+                margin-bottom: 2rem;
             }
 
+            .section p {
+                font-size: 1rem;
+                margin-bottom: 1.2rem;
+            }
+
+            /* OTHER MOBILE ADJUSTMENTS */
             .cards-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 1.5rem;
+                margin-top: 2rem;
+            }
+
+            .card {
+                padding: 1.5rem 1.2rem;
+            }
+
+            .card h3 {
+                font-size: 1.2rem;
+            }
+
+            .card li {
+                font-size: 0.9rem;
+                padding: 0.5rem 0;
             }
 
             .facilities-grid {
                 grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .facility-item {
+                padding: 1.2rem;
+            }
+
+            .facility-item strong {
+                font-size: 1rem;
+            }
+
+            .facility-item p {
+                font-size: 0.9rem;
             }
 
             .donation-content {
                 grid-template-columns: 1fr;
-                gap: 3rem;
+                gap: 2rem;
                 text-align: center;
             }
 
+            .donation-text h2 {
+                font-size: 1.8rem;
+            }
+
             .donation-amount {
-                font-size: 2.5rem;
+                font-size: 2rem;
+                margin: 1rem 0;
+            }
+
+            .donation-box {
+                padding: 2rem 1.5rem;
+            }
+
+            .qr-code {
+                width: 160px;
+                height: 160px;
+            }
+
+            .bank-info {
+                font-size: 1rem;
+            }
+
+            .progress-section {
+                padding: 1.5rem;
+                margin: 1.5rem 0;
             }
 
             .progress-header {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 1rem;
+            }
+
+            .progress-stat {
+                padding: 0.8rem;
             }
 
             .progress-number {
-                font-size: 1.8rem;
+                font-size: 1.4rem;
+            }
+
+            .progress-stat h4 {
+                font-size: 0.9rem;
+            }
+
+            .progress-bar-container {
+                height: 25px;
+            }
+
+            .progress-text {
+                font-size: 0.8rem;
             }
 
             .timeline-item {
                 flex-direction: column;
-                gap: 1rem;
+                gap: 0.8rem;
+                padding: 1rem;
             }
 
             .timeline-date {
                 min-width: auto;
-                font-size: 0.9rem;
+                font-size: 0.85rem;
             }
 
-            .donor-stats {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-                padding: 1.5rem;
+            .timeline-amount {
+                font-size: 0.95rem;
             }
 
-            .donor-stat-number {
-                font-size: 1.5rem;
-            }
-
-            .qr-code {
-                width: 200px;
-                height: 200px;
+            .timeline-description {
+                font-size: 0.85rem;
             }
 
             .cta-buttons {
                 flex-direction: column;
                 align-items: center;
                 gap: 1rem;
+                margin-top: 1.5rem;
             }
 
             .cta-button {
                 width: 100%;
-                max-width: 320px;
+                max-width: 280px;
                 justify-content: center;
+                padding: 14px 20px;
+                font-size: 0.95rem;
             }
 
             .hero-stats {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .about-text {
-                text-align: center;
-            }
-
-            .about-text p {
-                text-align: center;
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .team-grid {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 16px;
-            }
-
-            .nav-container {
-                padding: 1rem 16px;
-            }
-
-            .logo {
-                font-size: 1.3rem;
-            }
-
-            .logo img,
-            .logo-placeholder {
-                width: 45px;
-                height: 45px;
-            }
-
-            .hero h1 {
-                font-size: 1.9rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .banner-slider {
-                height: 280px;
-            }
-
-            .slide-content {
-                padding: 1.5rem;
-            }
-
-            .slide-title {
-                font-size: 1.5rem;
-            }
-
-            .slide-description {
-                font-size: 0.95rem;
-            }
-
-            .cta-button {
-                padding: 14px 24px;
-                font-size: 1rem;
+                gap: 1.2rem;
+                margin: 2rem 0;
             }
 
             .stat-item {
-                padding: 1.5rem 1rem;
+                padding: 1.2rem 0.8rem;
             }
 
             .stat-number {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
 
-            .card {
-                padding: 2rem 1.5rem;
+            .stat-label {
+                font-size: 0.8rem;
             }
 
-            .donation-text h2 {
-                font-size: 2rem;
-            }
-
-            .donation-amount {
-                font-size: 2rem;
-            }
-
-            .progress-section {
-                padding: 2rem 1.5rem;
-            }
-
-            .progress-number {
-                font-size: 1.5rem;
-            }
-
-            .progress-bar-container {
-                height: 30px;
-            }
-
-            .progress-text {
-                font-size: 0.9rem;
-            }
-
-            .donor-stats {
-                grid-template-columns: 1fr;
-                padding: 1.5rem 1rem;
-            }
-
-            .qr-code {
-                width: 180px;
-                height: 180px;
-            }
-
-            .floating-contact a {
-                padding: 14px 18px;
-                font-size: 0.9rem;
-            }
-
-            .floating-contact {
-                bottom: 20px;
-                right: 20px;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
+            .contact-section {
+                padding: 50px 0;
             }
 
             .contact-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin-top: 2rem;
+            }
+
+            .contact-item {
+                padding: 1.5rem 1rem;
+            }
+
+            .contact-item i {
+                font-size: 1.8rem;
+            }
+
+            .contact-item h3 {
+                font-size: 1.1rem;
+            }
+
+            .contact-item p {
+                font-size: 0.9rem;
             }
 
             .team-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: 1.2rem;
+            }
+
+            .team-member {
+                padding: 1.2rem;
+            }
+
+            .team-photo,
+            .team-photo-placeholder {
+                width: 80px;
+                height: 80px;
+            }
+
+            .footer {
+                padding: 2.5rem 0 1rem;
+            }
+
+            .footer-content {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .footer-section h3 {
+                font-size: 1.1rem;
+            }
+
+            .footer-section p,
+            .footer-section a {
+                font-size: 0.9rem;
+            }
+
+            .footer-bottom {
+                font-size: 0.85rem;
+            }
+
+            .budget-highlight {
+                padding: 2rem 1.2rem;
+                margin: 1.5rem 0;
+            }
+
+            .budget-amount {
+                font-size: 2rem;
+            }
+        }
+
+        /* SMALL MOBILE - 480px and below */
+        @media (max-width: 480px) {
+            body {
+                font-size: 13px;
+            }
+
+            .container {
+                padding: 0 12px;
+            }
+
+            .gallery-slide {
+                aspect-ratio: 4/3;
+            }
+
+            .gallery-nav {
+                font-size: 1rem;
+                padding: 10px 12px;
+            }
+
+            .gallery-nav.prev {
+                left: 10px;
+            }
+
+            .gallery-nav.next {
+                right: 10px;
+            }
+
+            .gallery-counter {
+                top: 10px;
+                right: 10px;
+                padding: 4px 8px;
+                font-size: 0.75rem;
+            }
+
+            .gallery-thumbnails {
+                gap: 4px;
+                padding: 0.6rem;
+            }
+
+            .gallery-thumbnail {
+                min-width: 50px;
+                height: 38px;
+            }
+
+            .gallery-slide-content {
+                padding: 1rem 0.8rem 0.8rem;
+            }
+
+            .gallery-slide-title {
+                font-size: 1rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .gallery-slide-description {
+                font-size: 0.8rem;
+            }
+
+            .section h2 {
+                font-size: 1.6rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .floating-contact a {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* EXTRA SMALL MOBILE - 375px and below */
+        @media (max-width: 375px) {
+            body {
+                font-size: 12px;
+            }
+
+            .container {
+                padding: 0 10px;
+            }
+
+            .gallery-nav {
+                font-size: 0.9rem;
+                padding: 8px 10px;
+            }
+
+            .gallery-thumbnails {
+                gap: 3px;
+                padding: 0.5rem;
+            }
+
+            .gallery-thumbnail {
+                min-width: 45px;
+                height: 34px;
             }
         }
 
@@ -1631,7 +1905,10 @@
         .cta-button:focus,
         .mobile-menu-btn:focus,
         .slider-nav:focus,
-        .dot:focus {
+        .dot:focus,
+        .gallery-nav:focus,
+        .gallery-dot:focus,
+        .gallery-thumbnail:focus {
             outline: 2px solid var(--accent-green);
             outline-offset: 2px;
         }
@@ -1646,13 +1923,27 @@
             .navbar,
             .floating-contact,
             .slider-nav,
-            .slider-dots {
+            .slider-dots,
+            .gallery-nav,
+            .gallery-dots,
+            .gallery-thumbnails {
                 display: none;
             }
             
             .hero-section {
                 background: var(--primary-green) !important;
             }
+        }
+
+        /* Performance optimizations */
+        * {
+            will-change: auto;
+        }
+
+        .card:hover,
+        .gallery-slide:hover,
+        .team-member:hover {
+            will-change: transform;
         }
     </style>
 </head>
@@ -1788,7 +2079,7 @@
                         <div class="qr-code">
                             <!-- QRIS IMAGE: Tambahkan gambar QRIS di sini -->
                             <img v-if="qrisImage" :src="qrisImage" alt="QRIS Code Yayasan Taman Lentera Surga" class="qr-image" />
-                            <div v-else class="qris.png">
+                            <div v-else class="qr-placeholder">
                                 <i class="fas fa-qrcode"></i>
                                 <span>QRIS Code</span>
                                 <small>Scan untuk donasi</small>
@@ -1886,13 +2177,6 @@
         <!-- Budget Section -->
         <section id="budget" class="section">
             <div class="container">
-                <h2>Total Kebutuhan Dana</h2>
-                <div class="budget-highlight">
-                    <h3>Target Dana Pembangunan</h3>
-                    <div class="budget-amount">{{ budgetAmount }}</div>
-                    <p>Total dana yang dibutuhkan untuk pembangunan dan operasional</p>
-                </div>
-
                 <!-- Progress Dana -->
                 <div class="progress-section">
                     <h3 style="color: var(--primary-green); text-align: center; margin-bottom: 2rem;">
@@ -1936,51 +2220,74 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Donor Statistics 
-                    <div class="donor-stats">
-                        <div class="donor-stat-item">
-                            <div class="donor-stat-number">{{ totalDonors }}</div>
-                            <div class="donor-stat-label">Total Donatur</div>
-                        </div>
-                        <div class="donor-stat-item">
-                            <div class="donor-stat-number">{{ avgDonation }}</div>
-                            <div class="donor-stat-label">Rata-rata Donasi</div>
-                        </div>
-                        <div class="donor-stat-item">
-                            <div class="donor-stat-number">{{ monthlyDonors }}</div>
-                            <div class="donor-stat-label">Donatur Bulan Ini</div>
-                        </div>
-                        <div class="donor-stat-item">
-                            <div class="donor-stat-number">{{ daysLeft }}</div>
-                            <div class="donor-stat-label">Hari Target Tercapai</div>
-                        </div>
-                    </div>-->
-                </div>
-
-                <h3 style="color: var(--primary-green); margin: 3rem 0 2rem;">Sumber Dana yang Diharapkan:</h3>
-                <div class="facilities-grid">
-                    <div v-for="(source, index) in fundingSources" :key="index" class="facility-item">
-                        <p><strong>{{ source }}</strong></p>
-                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Gallery Section -->
+        <!-- Gallery Section with NEW SLIDER -->
         <section id="gallery" class="section">
             <div class="container">
                 <h2>Dokumentasi Progres</h2>
                 <p>Lihat perkembangan pembangunan dan kegiatan yang telah berlangsung di Taman Lentera Surga.</p>
-                <div class="gallery-grid">
-                    <div v-for="(item, index) in galleryItems" :key="index" class="gallery-item">
-                        <!-- GALLERY IMAGES: Gambar galeri akan muncul di sini -->
-                        <img v-if="item.image" :src="item.image" :alt="item.caption" class="gallery-image" />
-                        <div v-else class="gallery-placeholder">
-                            <i class="fas fa-image"></i>
-                            <span>{{ item.name }}</span>
+                
+                <!-- GALLERY SLIDER - IMPROVED VERSION -->
+                <div class="gallery-slider">
+                    <div class="gallery-slider-container" :style="{ transform: `translateX(-${currentGallerySlide * 100}%)` }">
+                        <div v-for="(item, index) in galleryItems" :key="index" class="gallery-slide">
+                            <!-- GALLERY IMAGES: Gambar galeri akan muncul di sini -->
+                            <img v-if="item.image" :src="item.image" :alt="item.caption" class="gallery-slide-image" />
+                            <div v-else class="gallery-slide-placeholder">
+                                <i class="fas fa-image"></i>
+                                <span>{{ item.name }}</span>
+                            </div>
+                            
+                            <div class="gallery-slide-content">
+                                <div class="gallery-slide-title">{{ item.name }}</div>
+                                <div class="gallery-slide-description">{{ item.caption }}</div>
+                            </div>
                         </div>
-                        <div class="gallery-caption">{{ item.caption }}</div>
+                    </div>
+                    
+                    <!-- Gallery Navigation -->
+                    <button class="gallery-nav prev" @click="prevGallerySlide" aria-label="Gambar sebelumnya">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="gallery-nav next" @click="nextGallerySlide" aria-label="Gambar berikutnya">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    
+                    <!-- Counter -->
+                    <div class="gallery-counter">
+                        {{ currentGallerySlide + 1 }} / {{ galleryItems.length }}
+                    </div>
+                    
+                    <!-- Dots -->
+                    <div class="gallery-dots">
+                        <span 
+                            v-for="(item, index) in galleryItems" 
+                            :key="index" 
+                            class="gallery-dot" 
+                            :class="{ active: currentGallerySlide === index }"
+                            @click="goToGallerySlide(index)"
+                            :aria-label="`Lihat gambar ${index + 1}`"
+                        ></span>
+                    </div>
+                </div>
+
+                <!-- Thumbnail Navigation -->
+                <div class="gallery-thumbnails">
+                    <div 
+                        v-for="(item, index) in galleryItems" 
+                        :key="index" 
+                        class="gallery-thumbnail"
+                        :class="{ active: currentGallerySlide === index }"
+                        @click="goToGallerySlide(index)"
+                        :aria-label="`Thumbnail ${item.name}`"
+                    >
+                        <img v-if="item.image" :src="item.image" :alt="item.name" />
+                        <div v-else class="gallery-thumbnail-placeholder">
+                            <i class="fas fa-image"></i>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2065,6 +2372,8 @@
                     activeSection: 'hero',
                     currentSlide: 0,
                     slideInterval: null,
+                    currentGallerySlide: 0, // NEW: Gallery slider state
+                    gallerySlideInterval: null, // NEW: Gallery auto-slide
                     
                     // Hero Section
                     heroTitle: 'Taman Al-Qur\'an Lansia dan Anak Istimewa',
@@ -2076,22 +2385,18 @@
                     // ===============================
                     
                     // LOGO YAYASAN
-                    // Ganti null dengan path gambar logo Anda
-                    logoImage: 'logo.png', // Contoh: 'images/logo-yayasan.png'
-                    showLogoPlaceholder: false, // Set false jika sudah ada logo
+                    logoImage: 'logo.png',
+                    showLogoPlaceholder: false,
                     logoInitials: 'TLS',
                     
                     // HERO BACKGROUND IMAGE
-                    // Tambahkan gambar background untuk hero section
-                    heroBackgroundImage: 'hero.png', // Contoh: 'images/hero-background.jpg'
+                    heroBackgroundImage: 'hero.png',
                     
                     // QRIS CODE IMAGE
-                    // Ganti null dengan path gambar QRIS
-                    qrisImage: 'qris.png', // Contoh: 'images/qris-donasi.png'
+                    qrisImage: 'qris.png',
                     
                     // ABOUT SECTION IMAGE
-                    // Gambar untuk bagian tentang yayasan
-                    aboutImage: 'tentang.png', // Contoh: 'images/about-yayasan.jpg'
+                    aboutImage: 'tentang.png',
                     
                     // ===============================
                     // SLIDER IMAGES
@@ -2100,27 +2405,27 @@
                         {
                             title: 'Pembangunan Gedung Utama',
                             description: 'Progres pembangunan gedung utama Taman Al-Qur\'an dengan fasilitas lengkap dan ramah disabilitas',
-                            image: 'gambar1.png' // TAMBAHKAN GAMBAR DI SINI
+                            image: 'gambar1.png'
                         },
                         {
                             title: 'Kegiatan Pembelajaran',
                             description: 'Suasana pembelajaran Al-Qur\'an yang inklusif untuk lansia, penyandang disabilitas, dan anak yatim',
-                            image: 'images/slider/kegiatan-belajar.jpg' // TAMBAHKAN GAMBAR DI SINI
+                            image: null
                         },
                         {
                             title: 'Fasilitas Hunian',
                             description: 'Hunian yang nyaman dan aman untuk para santri dengan berbagai kebutuhan khusus',
-                            image: 'images/slider/hunian.jpg' // TAMBAHKAN GAMBAR DI SINI
+                            image: null
                         },
                         {
                             title: 'Workshop & Pelatihan',
                             description: 'Program workshop metode hafalan Al-Qur\'an dan pengembangan keterampilan',
-                            image: 'images/slider/workshop.jpg' // TAMBAHKAN GAMBAR DI SINI
+                            image: null
                         },
                         {
                             title: 'Infrastruktur Pendukung',
                             description: 'Pembangunan jembatan, pengurukan, dan fasilitas infrastruktur pendukung lainnya',
-                            image: 'images/slider/infrastruktur.jpg' // TAMBAHKAN GAMBAR DI SINI
+                            image: null
                         }
                     ],
                     
@@ -2139,7 +2444,7 @@
                         {
                             title: 'Romantisme Husnul Khotimah',
                             icon: 'fas fa-heart',
-                            image: 'images/programs/lansia-program.jpg', // TAMBAHKAN GAMBAR PROGRAM LANSIA
+                            image: null,
                             features: [
                                 'Pendidikan Al-Qur\'an dan agama bagi lansia',
                                 'Metode pengajaran yang mudah dipahami dan ramah usia',
@@ -2150,7 +2455,7 @@
                         {
                             title: 'Senyum Disabilitas Indonesia',
                             icon: 'fas fa-hands-helping',
-                            image: 'images/programs/disabilitas-program.jpg', // TAMBAHKAN GAMBAR PROGRAM DISABILITAS
+                            image: null,
                             features: [
                                 'Pendidikan Inklusif untuk Penyandang Disabilitas',
                                 'Kurikulum yang disesuaikan dengan kebutuhan khusus',
@@ -2161,7 +2466,7 @@
                         {
                             title: 'Istana Yatim dan Dhuafa',
                             icon: 'fas fa-home',
-                            image: 'images/programs/yatim-dhuafa-program.jpg', // TAMBAHKAN GAMBAR PROGRAM YATIM DHUAFA
+                            image: null,
                             features: [
                                 'Program tahfizh intensif',
                                 'Bimbingan psikologis dan pendidikan karakter',
@@ -2179,32 +2484,32 @@
                         {
                             name: 'Taman Belajar',
                             description: 'Tempat yang nyaman untuk belajar agama dan Al-Qur\'an dengan fasilitas modern',
-                            image: null // TAMBAHKAN GAMBAR FASILITAS
+                            image: null
                         },
                         {
                             name: 'Hunian Inklusif',
                             description: 'Hunian terpisah untuk lansia, disabilitas, anak yatim, dan dhuafa, dengan fasilitas kamar mandi yang ramah disabilitas',
-                            image: null // TAMBAHKAN GAMBAR FASILITAS
+                            image: null
                         },
                         {
                             name: 'Aula Serbaguna',
                             description: 'Digunakan untuk kegiatan keagamaan, sosial, dan program pengembangan diri',
-                            image: null // TAMBAHKAN GAMBAR FASILITAS
+                            image: null
                         },
                         {
                             name: 'Layanan Kesehatan',
                             description: 'Klinik sederhana untuk pemeriksaan kesehatan dan layanan konseling bagi santri',
-                            image: null // TAMBAHKAN GAMBAR FASILITAS
+                            image: null
                         },
                         {
                             name: 'Masjid Tabassam',
                             description: 'Masjid inklusif yang ramah disabilitas dengan miniatur Kakbah untuk pembelajaran',
-                            image: 'Masjid.png' // TAMBAHKAN GAMBAR FASILITAS
+                            image: 'Masjid.png'
                         },
                         {
                             name: 'Perpustakaan',
                             description: 'Koleksi lengkap buku-buku Islam, Al-Qur\'an braille, dan materi pembelajaran',
-                            image: null // TAMBAHKAN GAMBAR FASILITAS
+                            image: null
                         }
                     ],
                     
@@ -2216,30 +2521,31 @@
                             name: 'KH. Abuhasanuddin, S.Pd Alhafizh',
                             position: 'Dewan Pembina',
                             description: 'Ketua Yayasan Ibnu Katsir, berpengalaman 20 tahun mengelola berbagai pesantren tahfizh',
-                            photo: 'ustabu.png' // TAMBAHKAN FOTO ANGGOTA TIM
+                            photo: 'ustabu.png'
                         },
                         {
                             name: 'KH. Ir. M Thamrin Ali Yasin',
                             position: 'Dewan Pengawas',
                             description: 'Tokoh Nahdlatul Ulama Jember',
-                            photo: 'foto.jpg' // TAMBAHKAN FOTO ANGGOTA TIM
+                            photo: 'foto.jpg'
                         },
-                        {   name: 'KH. Kusno, S.Ag., M.Pd.I',
+                        {   
+                            name: 'KH. Kusno, S.Ag., M.Pd.I',
                             position: 'Dewan Pengawas',
                             description: 'Tokoh Muhammadiyah Jember',
-                            photo: 'ifoto.jpg' // TAMBAHKAN FOTO ANGGOTA TIM
+                            photo: 'ifoto.jpg'
                         },
                         {
                             name: 'KH. Hamid Hasbullah',
                             position: 'Penasehat',
                             description: 'Pengasuh Pesantren, Ketua LPAI Jember',
-                            photo: 'foto.jpg' // TAMBAHKAN FOTO ANGGOTA TIM
+                            photo: 'foto.jpg'
                         },
                         {
                             name: 'Ust Agus Rohmawan, SE',
                             position: 'Ketua Yayasan',
                             description: 'Berpengalaman 20 tahun mengelola berbagai pesantren tahfizh dan pendampingan Disabilitas',
-                            photo: 'foto.jpg' // TAMBAHKAN FOTO ANGGOTA TIM
+                            photo: 'foto.jpg'
                         }
                     ],
                     
@@ -2249,35 +2555,17 @@
                     currentFunds: 53000000,
                     
                     // Funding Updates
-                  //        fundingUpdates: [
-                    //    {
-                     //       date: 'Jan 2025',
-                    //        amount: 20000000,
-                     //       description: ''
-                    //    },
-                    //    {
-                     //       date: 'Feb 2025', 
-                     //       amount: 80000000,
-                     //       description: 'Donasi dari program galang dana online dan infaq masyarakat'
-                      //  },
-                      //  {
-                       //     date: 'Mar 2025',
-                      //      amount: 40000000,
-                      //      description: 'Bantuan dari komunitas dan donatur baru'
-                      //  } 
-                   // ],
-                    
-                    // Donor Statistics
-                    totalDonors: 147,
-                    monthlyDonors: 23,
-                    avgDonation: 'Rp 1.67M',
-                    daysLeft: 180,
-                    
-                    fundingSources: [
-                        'Hasil Usaha produktif',
-                        'Infaq/sedekah masyarakat',
-                        'Para muhsinin tetap',
-                        'Sumber dana lain yang halal'
+                    fundingUpdates: [
+                        {
+                            date: 'Jan 2025',
+                            amount: 20000000,
+                            description: 'Dana awal pembangunan dari donatur tetap dan infaq masyarakat'
+                        },
+                        {
+                            date: 'Feb 2025', 
+                            amount: 33000000,
+                            description: 'Donasi dari program galang dana online dan bantuan komunitas'
+                        }
                     ],
                     
                     // Banking & QRIS
@@ -2285,44 +2573,48 @@
                     accountName: 'Yayasan Taman Lentera Surga',
                     
                     // ===============================
-                    // GALLERY IMAGES
+                    // GALLERY IMAGES - IMPROVED
                     // ===============================
                     galleryItems: [
                         { 
                             name: 'Gedung Utama', 
-                            caption: 'Pembangunan Gedung Utama',
-                            image: 'images/gallery/gedung-utama.jpg' // TAMBAHKAN GAMBAR GALERI
+                            caption: 'Pembangunan Gedung Utama Taman Al-Qur\'an dengan fasilitas lengkap untuk pembelajaran inklusif',
+                            image: null
                         },
                         { 
                             name: 'Rumah Pengurus', 
-                            caption: 'Fasilitas Hunian Pengurus',
-                            image: 'images/gallery/rumah-pengurus.jpg' // TAMBAHKAN GAMBAR GALERI
+                            caption: 'Fasilitas Hunian Pengurus yang nyaman dan strategis untuk mendukung kegiatan operasional',
+                            image: null
                         },
                         { 
                             name: 'Lokasi Tanah', 
-                            caption: 'Lokasi Strategis di Jember',
-                            image: 'images/gallery/lokasi-tanah.jpg' // TAMBAHKAN GAMBAR GALERI
+                            caption: 'Lokasi Strategis di Jember dengan akses mudah dan lingkungan yang kondusif',
+                            image: null
                         },
-                    
                         { 
                             name: 'Pengurukan', 
-                            caption: 'Proses Pengurukan Tanah',
-                            image: 'images/gallery/pengurukan.jpg' // TAMBAHKAN GAMBAR GALERI
+                            caption: 'Proses Pengurukan Tanah untuk persiapan pembangunan fasilitas utama',
+                            image: null
                         },
                         { 
                             name: 'Workshop', 
-                            caption: 'Workshop Metode Hafalan',
-                            image: 'images/gallery/workshop.jpg' // TAMBAHKAN GAMBAR GALERI
+                            caption: 'Workshop Metode Hafalan Al-Qur\'an untuk para ustadz dan santri',
+                            image: null
                         },
                         { 
                             name: 'Jembatan', 
-                            caption: 'Pembangunan Infrastruktur',
-                            image: 'images/gallery/jembatan.jpg' // TAMBAHKAN GAMBAR GALERI
+                            caption: 'Pembangunan Infrastruktur jembatan penghubung antar area kompleks',
+                            image: null
                         },
                         { 
                             name: 'Jembatan Talenta', 
-                            caption: 'Jembatan Penghubung',
-                            image: 'images/gallery/jembatan-talenta.jpg' // TAMBAHKAN GAMBAR GALERI
+                            caption: 'Jembatan Penghubung khusus yang ramah untuk penyandang disabilitas',
+                            image: null
+                        },
+                        { 
+                            name: 'Kegiatan Sosial', 
+                            caption: 'Program pembagian sembako dan bantuan sosial untuk masyarakat sekitar',
+                            image: null
                         }
                     ],
                     
@@ -2353,10 +2645,12 @@
                 window.addEventListener('scroll', this.handleScroll);
                 this.observeSections();
                 this.startSlideshow();
+                this.startGallerySlideshow(); // NEW: Start gallery slideshow
             },
             beforeUnmount() {
                 window.removeEventListener('scroll', this.handleScroll);
                 this.stopSlideshow();
+                this.stopGallerySlideshow(); // NEW: Stop gallery slideshow
             },
             methods: {
                 handleScroll() {
@@ -2375,6 +2669,8 @@
                         this.mobileMenuOpen = false;
                     }
                 },
+                
+                // Banner Slider Methods
                 nextSlide() {
                     this.currentSlide = (this.currentSlide + 1) % this.slides.length;
                     this.resetSlideshow();
@@ -2401,6 +2697,35 @@
                     this.stopSlideshow();
                     this.startSlideshow();
                 },
+
+                // NEW: Gallery Slider Methods
+                nextGallerySlide() {
+                    this.currentGallerySlide = (this.currentGallerySlide + 1) % this.galleryItems.length;
+                    this.resetGallerySlideshow();
+                },
+                prevGallerySlide() {
+                    this.currentGallerySlide = this.currentGallerySlide === 0 ? this.galleryItems.length - 1 : this.currentGallerySlide - 1;
+                    this.resetGallerySlideshow();
+                },
+                goToGallerySlide(index) {
+                    this.currentGallerySlide = index;
+                    this.resetGallerySlideshow();
+                },
+                startGallerySlideshow() {
+                    this.gallerySlideInterval = setInterval(() => {
+                        this.nextGallerySlide();
+                    }, 6000); // 6 seconds for gallery
+                },
+                stopGallerySlideshow() {
+                    if (this.gallerySlideInterval) {
+                        clearInterval(this.gallerySlideInterval);
+                    }
+                },
+                resetGallerySlideshow() {
+                    this.stopGallerySlideshow();
+                    this.startGallerySlideshow();
+                },
+
                 formatCurrency(amount) {
                     return 'Rp ' + amount.toLocaleString('id-ID');
                 },
@@ -2411,6 +2736,13 @@
                             entries.forEach((entry) => {
                                 if (entry.isIntersecting) {
                                     this.activeSection = entry.target.id;
+                                    
+                                    // Pause gallery slideshow when not in view, resume when in view
+                                    if (entry.target.id === 'gallery') {
+                                        this.startGallerySlideshow();
+                                    } else {
+                                        this.stopGallerySlideshow();
+                                    }
                                 }
                             });
                         },
