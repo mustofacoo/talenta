@@ -1,0 +1,2434 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yayasan Taman Lentera Surga - Taman Al-Qur'an Lansia dan Disabilitas</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Color Palette - Green & Gray Theme */
+            --primary-green: #2d5016;
+            --secondary-green: #4a7c59;
+            --accent-green: #6a9c78;
+            --light-green: #8fb89b;
+            --pale-green: #b8d4c3;
+            
+            --primary-gray: #2c3e50;
+            --secondary-gray: #34495e;
+            --light-gray: #ecf0f1;
+            --lighter-gray: #f8f9fa;
+            --medium-gray: #7f8c8d;
+            --dark-gray: #1a252f;
+            
+            --white: #ffffff;
+            --text-dark: #2c3e50;
+            --text-light: #5a6c7d;
+            --border-light: #e0e6ed;
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            --gradient-secondary: linear-gradient(135deg, var(--accent-green), var(--light-green));
+            --gradient-gray: linear-gradient(135deg, var(--primary-gray), var(--secondary-gray));
+            --gradient-light: linear-gradient(135deg, var(--light-gray), var(--white));
+            
+            /* Shadows */
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.15);
+            --shadow-xl: 0 15px 35px rgba(0, 0, 0, 0.1);
+            
+            /* Border radius */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--lighter-gray);
+            scroll-behavior: smooth;
+        }
+
+        .app {
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Image Utilities */
+        .img-responsive {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+        }
+
+        .img-circle {
+            border-radius: 50%;
+        }
+
+        .img-shadow {
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Loading placeholder for images */
+        .img-loading {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Improved Loading Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Navigation - Enhanced */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-md);
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            z-index: 1001;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            border-radius: var(--radius-sm);
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-placeholder {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .logo i {
+            color: var(--secondary-green);
+            font-size: 1.8rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.7rem 1rem;
+            border-radius: var(--radius-md);
+        }
+
+        .nav-link:hover {
+            color: var(--primary-green);
+            background: var(--pale-green);
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            color: var(--primary-green);
+            background: var(--pale-green);
+            font-weight: 600;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+            padding: 0.5rem;
+            border-radius: var(--radius-sm);
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .mobile-menu-btn:hover {
+            background: var(--light-gray);
+            color: var(--primary-green);
+        }
+
+        /* Hero Section - Enhanced with Background Image Support */
+        .hero-section {
+            background: var(--gradient-primary);
+            padding: 140px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            color: white;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0.85;
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            margin-bottom: 3rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.95;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 2rem 1.5rem;
+            border-radius: var(--radius-lg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--pale-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--gradient-gray);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-lg);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+            background: var(--gradient-primary);
+        }
+
+        .cta-button.secondary {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-button.secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Banner Slider - Enhanced with Image Support */
+        .banner-slider {
+            position: relative;
+            height: 450px;
+            overflow: hidden;
+            background: var(--light-gray);
+            margin: 0;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .slider-container {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .slide-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .slide-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0.8;
+            z-index: 2;
+        }
+
+        .slide-content {
+            text-align: center;
+            max-width: 700px;
+            padding: 3rem 2rem;
+            position: relative;
+            z-index: 3;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .slide-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .slide-description {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            line-height: 1.7;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+            font-weight: 300;
+        }
+
+        .slide-placeholder {
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-secondary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .slide-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.7;
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            color: var(--primary-green);
+            font-size: 1.5rem;
+            padding: 16px 20px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-md);
+            z-index: 4;
+        }
+
+        .slider-nav:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+            color: var(--secondary-green);
+        }
+
+        .slider-nav.prev {
+            left: 30px;
+        }
+
+        .slider-nav.next {
+            right: 30px;
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 4;
+        }
+
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: white;
+            transform: scale(1.3);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Donation Highlight - Enhanced */
+        .donation-highlight {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .donation-highlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.5;
+        }
+
+        .donation-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .donation-text h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .donation-amount {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--pale-green);
+            margin: 2rem 0;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .donation-box {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 3rem 2rem;
+            border-radius: var(--radius-xl);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .qr-code {
+            width: 220px;
+            height: 220px;
+            background: white;
+            margin: 2rem auto;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-dark);
+            font-weight: 600;
+            overflow: hidden;
+            border: 3px solid var(--light-green);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .qr-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: calc(var(--radius-lg) - 3px);
+        }
+
+        .qr-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            color: var(--medium-gray);
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .qr-placeholder i {
+            font-size: 3.5rem;
+            color: var(--accent-green);
+            margin-bottom: 1rem;
+        }
+
+        .bank-info {
+            font-size: 1.3rem;
+            margin: 1.5rem 0;
+            font-weight: 600;
+            color: var(--pale-green);
+        }
+
+        /* Sections - Enhanced */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section:nth-child(even) {
+            background: var(--lighter-gray);
+        }
+
+        .section:nth-child(odd) {
+            background: white;
+        }
+
+        .section h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--primary-green);
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: var(--gradient-secondary);
+            border-radius: 2px;
+        }
+
+        .section p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            text-align: center;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Cards - Enhanced */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: 3rem 2rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-secondary);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--light-green);
+        }
+
+        .card-icon {
+            font-size: 3.5rem;
+            color: var(--secondary-green);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .card h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card li {
+            padding: 0.8rem 0;
+            position: relative;
+            padding-left: 2rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* Facilities Grid - Enhanced */
+        .facilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .facility-item {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--accent-green);
+            position: relative;
+        }
+
+        .facility-item:hover {
+            transform: translateX(8px);
+            box-shadow: var(--shadow-md);
+            border-left-color: var(--secondary-green);
+        }
+
+        .facility-item strong {
+            color: var(--primary-green);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .facility-item p {
+            color: var(--text-light);
+            margin: 0;
+            text-align: left;
+        }
+
+        .facility-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+        }
+
+        /* Progress Section - Enhanced */
+        .progress-section {
+            background: white;
+            padding: 3rem;
+            border-radius: var(--radius-xl);
+            margin: 3rem 0;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-light);
+        }
+
+        .progress-header {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .progress-stat {
+            padding: 1.5rem;
+            background: var(--lighter-gray);
+            border-radius: var(--radius-lg);
+            transition: all 0.3s ease;
+        }
+
+        .progress-stat:hover {
+            background: var(--pale-green);
+            transform: translateY(-3px);
+        }
+
+        .progress-stat h4 {
+            color: var(--primary-green);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .progress-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-label {
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+
+        .progress-bar-container {
+            background: var(--light-gray);
+            border-radius: 25px;
+            height: 35px;
+            overflow: hidden;
+            margin: 2rem 0;
+            position: relative;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--gradient-secondary);
+            border-radius: 25px;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: 700;
+            color: var(--primary-gray);
+            font-size: 1rem;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+        }
+
+        /* Timeline - Enhanced */
+        .timeline-item {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background: var(--lighter-gray);
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--accent-green);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            background: white;
+            transform: translateX(8px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .timeline-date {
+            font-weight: 600;
+            color: var(--secondary-green);
+            min-width: 90px;
+            font-size: 0.95rem;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-amount {
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .timeline-description {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Donor Stats - Enhanced */
+        .donor-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--gradient-light);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-light);
+        }
+
+        .donor-stat-item {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            background: white;
+            border-radius: var(--radius-md);
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .donor-stat-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .donor-stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .donor-stat-label {
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Gallery - Enhanced */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            aspect-ratio: 4/3;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.1);
+        }
+
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .gallery-placeholder i {
+            font-size: 3rem;
+            opacity: 0.8;
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 2rem 1.5rem 1.5rem;
+            font-size: 0.95rem;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        /* About Section - Enhanced */
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 4rem;
+            margin-top: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            text-align: left;
+        }
+
+        .about-text p {
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 450px;
+            height: 350px;
+            object-fit: cover;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            margin: 0 auto;
+        }
+
+        .about-placeholder {
+            width: 100%;
+            max-width: 450px;
+            height: 350px;
+            background: var(--gradient-secondary);
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            margin: 0 auto;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .about-placeholder i {
+            font-size: 5rem;
+            opacity: 0.8;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .team-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1.5rem;
+            border: 4px solid var(--light-green);
+        }
+
+        .team-photo-placeholder {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--gradient-secondary);
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            border: 4px solid var(--light-green);
+        }
+
+        /* Contact Section - Enhanced */
+        .contact-section {
+            background: var(--gradient-light);
+            padding: 100px 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .contact-item {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-light);
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .contact-item i {
+            font-size: 2.5rem;
+            color: var(--secondary-green);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item h3 {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .contact-item p {
+            color: var(--text-light);
+            margin: 0;
+            text-align: center;
+        }
+
+        .contact-item a {
+            color: var(--secondary-green);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-item a:hover {
+            color: var(--primary-green);
+        }
+
+        /* Footer - Enhanced */
+        .footer {
+            background: var(--primary-gray);
+            color: var(--light-gray);
+            padding: 4rem 0 1.5rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            color: var(--pale-green);
+            font-size: 1.3rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: var(--light-gray);
+            text-decoration: none;
+            line-height: 1.7;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--secondary-gray);
+            padding-top: 2rem;
+            color: var(--light-gray);
+        }
+
+        /* Floating Contact - Enhanced */
+        .floating-contact {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .floating-contact a {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+            animation: pulse 3s infinite;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+        }
+
+        .floating-contact a:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* Budget Highlight - Enhanced */
+        .budget-highlight {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: var(--radius-xl);
+            text-align: center;
+            margin: 3rem 0;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .budget-highlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .budget-amount {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 1.5rem 0;
+            color: var(--pale-green);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive Design - Enhanced */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 24px;
+            }
+            
+            .section {
+                padding: 80px 0;
+            }
+            
+            .hero-section {
+                padding: 120px 0 80px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(30px);
+                flex-direction: column;
+                justify-content: flex-start;
+                padding: 3rem 2rem;
+                transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: var(--shadow-lg);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-link {
+                padding: 1rem 1.5rem;
+                width: 100%;
+                text-align: center;
+                border-radius: var(--radius-md);
+                margin-bottom: 0.5rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-section {
+                padding: 100px 0 60px;
+                min-height: 60vh;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .banner-slider {
+                height: 350px;
+            }
+
+            .slide-title {
+                font-size: 1.8rem;
+            }
+
+            .slide-description {
+                font-size: 1rem;
+            }
+
+            .slider-nav {
+                font-size: 1.2rem;
+                padding: 12px 16px;
+            }
+
+            .slider-nav.prev {
+                left: 15px;
+            }
+
+            .slider-nav.next {
+                right: 15px;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .section h2 {
+                font-size: 2.2rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .facilities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .donation-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+
+            .donation-amount {
+                font-size: 2.5rem;
+            }
+
+            .progress-header {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .progress-number {
+                font-size: 1.8rem;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .timeline-date {
+                min-width: auto;
+                font-size: 0.9rem;
+            }
+
+            .donor-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                padding: 1.5rem;
+            }
+
+            .donor-stat-number {
+                font-size: 1.5rem;
+            }
+
+            .qr-code {
+                width: 200px;
+                height: 200px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .cta-button {
+                width: 100%;
+                max-width: 320px;
+                justify-content: center;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-text {
+                text-align: center;
+            }
+
+            .about-text p {
+                text-align: center;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .nav-container {
+                padding: 1rem 16px;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .logo img,
+            .logo-placeholder {
+                width: 45px;
+                height: 45px;
+            }
+
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .banner-slider {
+                height: 280px;
+            }
+
+            .slide-content {
+                padding: 1.5rem;
+            }
+
+            .slide-title {
+                font-size: 1.5rem;
+            }
+
+            .slide-description {
+                font-size: 0.95rem;
+            }
+
+            .cta-button {
+                padding: 14px 24px;
+                font-size: 1rem;
+            }
+
+            .stat-item {
+                padding: 1.5rem 1rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .card {
+                padding: 2rem 1.5rem;
+            }
+
+            .donation-text h2 {
+                font-size: 2rem;
+            }
+
+            .donation-amount {
+                font-size: 2rem;
+            }
+
+            .progress-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .progress-number {
+                font-size: 1.5rem;
+            }
+
+            .progress-bar-container {
+                height: 30px;
+            }
+
+            .progress-text {
+                font-size: 0.9rem;
+            }
+
+            .donor-stats {
+                grid-template-columns: 1fr;
+                padding: 1.5rem 1rem;
+            }
+
+            .qr-code {
+                width: 180px;
+                height: 180px;
+            }
+
+            .floating-contact a {
+                padding: 14px 18px;
+                font-size: 0.9rem;
+            }
+
+            .floating-contact {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Accessibility improvements */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Focus styles for accessibility */
+        .nav-link:focus,
+        .cta-button:focus,
+        .mobile-menu-btn:focus,
+        .slider-nav:focus,
+        .dot:focus {
+            outline: 2px solid var(--accent-green);
+            outline-offset: 2px;
+        }
+
+        /* Smooth scrolling enhancement */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Print styles */
+        @media print {
+            .navbar,
+            .floating-contact,
+            .slider-nav,
+            .slider-dots {
+                display: none;
+            }
+            
+            .hero-section {
+                background: var(--primary-green) !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="app">
+        <!-- Navigation -->
+        <nav class="navbar" :class="{ scrolled: isScrolled }">
+            <div class="nav-container">
+                <div class="logo">
+                    <!-- KONFIGURASI LOGO: Ganti logoImage dengan path logo Anda -->
+                    <img v-if="logoImage" :src="logoImage" :alt="organizationName + ' Logo'" />
+                    
+                    <!-- Placeholder logo dengan inisial (jika tidak ada gambar logo) -->
+                    <div v-else-if="!logoImage && showLogoPlaceholder" class="logo-placeholder">
+                        {{ logoInitials }}
+                    </div>
+                    
+                    <!-- Ikon FontAwesome (default fallback) -->
+                    <i v-else class="fas fa-mosque" aria-hidden="true"></i>
+                    
+                    <span>Taman Lentera Surga</span>
+                </div>
+                <ul class="nav-menu" :class="{ active: mobileMenuOpen }">
+                    <li><a href="#hero" class="nav-link" :class="{ active: activeSection === 'hero' }" @click="scrollTo('hero')">Beranda</a></li>
+                    <li><a href="#about" class="nav-link" :class="{ active: activeSection === 'about' }" @click="scrollTo('about')">Tentang</a></li>
+                    <li><a href="#programs" class="nav-link" :class="{ active: activeSection === 'programs' }" @click="scrollTo('programs')">Program</a></li>
+                    <li><a href="#facilities" class="nav-link" :class="{ active: activeSection === 'facilities' }" @click="scrollTo('facilities')">Fasilitas</a></li>
+                    <li><a href="#team" class="nav-link" :class="{ active: activeSection === 'team' }" @click="scrollTo('team')">Tim</a></li>
+                    <li><a href="#gallery" class="nav-link" :class="{ active: activeSection === 'gallery' }" @click="scrollTo('gallery')">Galeri</a></li>
+                    <li><a href="#contact" class="nav-link" :class="{ active: activeSection === 'contact' }" @click="scrollTo('contact')">Kontak</a></li>
+                </ul>
+                <button class="mobile-menu-btn" @click="toggleMobileMenu" aria-label="Toggle mobile menu">
+                    <i class="fas" :class="mobileMenuOpen ? 'fa-times' : 'fa-bars'"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <!-- HERO BACKGROUND IMAGE: Tambahkan gambar background hero di sini -->
+            <img v-if="heroBackgroundImage" :src="heroBackgroundImage" alt="Background Hero" class="hero-bg-image" />
+            
+            <div class="container">
+                <div class="hero-content">
+                    <h1>{{ heroTitle }}</h1>
+                    <p>{{ heroSubtitle }}</p>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">Santri Lansia</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">20+</div>
+                            <div class="stat-label">Anak Istimewa</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">8</div>
+                            <div class="stat-label">Donatur Tetap</div>
+                        </div>
+                    </div>
+
+                    <div class="cta-buttons">
+                        <a href="#donate" class="cta-button" @click="scrollTo('donate')">
+                            <i class="fas fa-heart"></i>
+                            {{ ctaText }}
+                        </a>
+                        <a href="#about" class="cta-button secondary" @click="scrollTo('about')">
+                            <i class="fas fa-info-circle"></i>
+                            Pelajari Lebih Lanjut
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Banner Slider -->
+        <section class="banner-slider">
+            <div class="slider-container" :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
+                <div v-for="(slide, index) in slides" :key="index" class="slide">
+                    <!-- SLIDER IMAGES: Gambar slider akan muncul di sini -->
+                    <img v-if="slide.image" :src="slide.image" :alt="slide.title" class="slide-bg-image" />
+                    
+                    <!-- Placeholder jika tidak ada gambar -->
+                    <div v-if="!slide.image" class="slide-placeholder">
+                        <i class="fas fa-image"></i>
+                        <span>{{ slide.title }}</span>
+                    </div>
+                    
+                    <!-- Overlay untuk slide dengan gambar -->
+                    <div v-if="slide.image" class="slide-overlay"></div>
+                    
+                    <div class="slide-content">
+                        <h3 class="slide-title">{{ slide.title }}</h3>
+                        <p class="slide-description">{{ slide.description }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="slider-nav prev" @click="prevSlide" aria-label="Slide sebelumnya">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="slider-nav next" @click="nextSlide" aria-label="Slide berikutnya">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <div class="slider-dots">
+                <span 
+                    v-for="(slide, index) in slides" 
+                    :key="index" 
+                    class="dot" 
+                    :class="{ active: currentSlide === index }"
+                    @click="goToSlide(index)"
+                    :aria-label="`Ke slide ${index + 1}`"
+                ></span>
+            </div>
+        </section>
+
+        <!-- Donation Highlight -->
+        <section id="donate" class="donation-highlight">
+            <div class="container">
+                <div class="donation-content">
+                    <div class="donation-text">
+                        <h2>Wujudkan Mimpi Bersama</h2>
+                        <p>Mari bersama-sama membangun Taman Al-Qur'an yang inklusif untuk lansia, penyandang disabilitas, anak yatim, dan dhuafa di Jember.</p>
+                        <div class="donation-amount">{{ budgetAmount }}</div>
+                        <p>Total dana yang dibutuhkan untuk pembangunan dan operasional</p>
+                    </div>
+                    <div class="donation-box">
+                        <h3 style="margin-bottom: 1.5rem;">Donasi Sekarang</h3>
+                        <div class="bank-info">{{ bankAccount }}</div>
+                        <div class="bank-info">a.n. {{ accountName }}</div>
+                        <div class="qr-code">
+                            <!-- QRIS IMAGE: Tambahkan gambar QRIS di sini -->
+                            <img v-if="qrisImage" :src="qrisImage" alt="QRIS Code Yayasan Taman Lentera Surga" class="qr-image" />
+                            <div v-else class="qris.png">
+                                <i class="fas fa-qrcode"></i>
+                                <span>QRIS Code</span>
+                                <small>Scan untuk donasi</small>
+                            </div>
+                        </div>
+                        <p style="font-size: 0.9rem; margin: 1rem 0;">Scan QRIS di atas untuk donasi instant</p>
+                        <a href="#contact" class="cta-button" @click="scrollTo('contact')">
+                            <i class="fas fa-phone"></i>
+                            Hubungi Kami
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container">
+                <h2>Tentang Yayasan</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p v-for="(paragraph, index) in aboutContent" :key="index">{{ paragraph }}</p>
+                    </div>
+                    <div class="about-image">
+                        <!-- ABOUT IMAGE: Tambahkan gambar tentang yayasan di sini -->
+                        <img v-if="aboutImage" :src="aboutImage" alt="Tentang Yayasan Taman Lentera Surga" />
+                        <div v-else class="about-placeholder">
+                            <i class="fas fa-mosque"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Programs Section -->
+        <section id="programs" class="section">
+            <div class="container">
+                <h2>Program Unggulan</h2>
+                <p>Tiga program utama yang dirancang khusus untuk memberikan pendidikan Al-Qur'an yang inklusif dan berkualitas.</p>
+                <div class="cards-grid">
+                    <div v-for="(program, index) in programs" :key="index" class="card">
+                        <!-- PROGRAM IMAGES: Tambahkan gambar untuk setiap program -->
+                        <img v-if="program.image" :src="program.image" :alt="program.title" class="card-image" />
+                        
+                        <div class="card-icon" v-if="!program.image">
+                            <i :class="program.icon"></i>
+                        </div>
+                        
+                        <h3>{{ program.title }}</h3>
+                        <ul>
+                            <li v-for="(feature, fIndex) in program.features" :key="fIndex">{{ feature }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Facilities Section -->
+        <section id="facilities" class="section">
+            <div class="container">
+                <h2>Fasilitas yang Direncanakan</h2>
+                <p>Fasilitas lengkap dan ramah untuk semua kalangan, dirancang khusus untuk memenuhi kebutuhan pembelajaran yang inklusif.</p>
+                <div class="facilities-grid">
+                    <div v-for="(facility, index) in facilities" :key="index" class="facility-item">
+                        <!-- FACILITY IMAGES: Tambahkan gambar untuk setiap fasilitas -->
+                        <img v-if="facility.image" :src="facility.image" :alt="facility.name" class="facility-image" />
+                        
+                        <p><strong>{{ facility.name }}:</strong> {{ facility.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="team" class="section">
+            <div class="container">
+                <h2>Tim Pengurus</h2>
+                <p>Orang-orang yang berdedikasi untuk mewujudkan visi pendidikan Islam inklusif di Jember.</p>
+                <div class="team-grid">
+                    <div v-for="(member, index) in teamMembers" :key="index" class="team-member">
+                        <!-- TEAM PHOTOS: Tambahkan foto untuk setiap anggota tim -->
+                        <img v-if="member.photo" :src="member.photo" :alt="member.name" class="team-photo" />
+                        <div v-else class="team-photo-placeholder">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        
+                        <h3>{{ member.name }}</h3>
+                        <p style="color: var(--secondary-green); font-weight: 600; margin-bottom: 1rem;">{{ member.position }}</p>
+                        <p style="font-size: 0.9rem; color: var(--text-light);">{{ member.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Budget Section -->
+        <section id="budget" class="section">
+            <div class="container">
+                <h2>Total Kebutuhan Dana</h2>
+                <div class="budget-highlight">
+                    <h3>Target Dana Pembangunan</h3>
+                    <div class="budget-amount">{{ budgetAmount }}</div>
+                    <p>Total dana yang dibutuhkan untuk pembangunan dan operasional</p>
+                </div>
+
+                <!-- Progress Dana -->
+                <div class="progress-section">
+                    <h3 style="color: var(--primary-green); text-align: center; margin-bottom: 2rem;">
+                        <i class="fas fa-chart-line"></i> Progress Perolehan Dana
+                    </h3>
+                    
+                    <div class="progress-header">
+                        <div class="progress-stat">
+                            <h4>Dana Terkumpul</h4>
+                            <div class="progress-number">{{ formatCurrency(currentFunds) }}</div>
+                            <div class="progress-label">Dari total kebutuhan</div>
+                        </div>
+                        <div class="progress-stat">
+                            <h4>Persentase Tercapai</h4>
+                            <div class="progress-number">{{ progressPercentage }}%</div>
+                            <div class="progress-label">Target pembangunan</div>
+                        </div>
+                        <div class="progress-stat">
+                            <h4>Sisa Kebutuhan</h4>
+                            <div class="progress-number">{{ formatCurrency(remainingFunds) }}</div>
+                            <div class="progress-label">Untuk mencapai target</div>
+                        </div>
+                    </div>
+
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" :style="{ width: progressPercentage + '%' }"></div>
+                        <div class="progress-text">{{ progressPercentage }}% Tercapai</div>
+                    </div>
+
+                    <!-- Update Timeline -->
+                    <div class="update-timeline">
+                        <h4 style="color: var(--primary-green); margin-bottom: 1.5rem;">
+                            <i class="fas fa-calendar-alt"></i>
+                            Semoga Allah melapangkan rezeki para donatur dan mengganti dengan yang lebih baik
+                        </h4>
+                        <div v-for="(update, index) in fundingUpdates" :key="index" class="timeline-item">
+                            <div class="timeline-date">{{ update.date }}</div>
+                            <div class="timeline-content">
+                                <div class="timeline-amount">+ {{ formatCurrency(update.amount) }}</div>
+                                <div class="timeline-description">{{ update.description }}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Donor Statistics 
+                    <div class="donor-stats">
+                        <div class="donor-stat-item">
+                            <div class="donor-stat-number">{{ totalDonors }}</div>
+                            <div class="donor-stat-label">Total Donatur</div>
+                        </div>
+                        <div class="donor-stat-item">
+                            <div class="donor-stat-number">{{ avgDonation }}</div>
+                            <div class="donor-stat-label">Rata-rata Donasi</div>
+                        </div>
+                        <div class="donor-stat-item">
+                            <div class="donor-stat-number">{{ monthlyDonors }}</div>
+                            <div class="donor-stat-label">Donatur Bulan Ini</div>
+                        </div>
+                        <div class="donor-stat-item">
+                            <div class="donor-stat-number">{{ daysLeft }}</div>
+                            <div class="donor-stat-label">Hari Target Tercapai</div>
+                        </div>
+                    </div>-->
+                </div>
+
+                <h3 style="color: var(--primary-green); margin: 3rem 0 2rem;">Sumber Dana yang Diharapkan:</h3>
+                <div class="facilities-grid">
+                    <div v-for="(source, index) in fundingSources" :key="index" class="facility-item">
+                        <p><strong>{{ source }}</strong></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="section">
+            <div class="container">
+                <h2>Dokumentasi Progres</h2>
+                <p>Lihat perkembangan pembangunan dan kegiatan yang telah berlangsung di Taman Lentera Surga.</p>
+                <div class="gallery-grid">
+                    <div v-for="(item, index) in galleryItems" :key="index" class="gallery-item">
+                        <!-- GALLERY IMAGES: Gambar galeri akan muncul di sini -->
+                        <img v-if="item.image" :src="item.image" :alt="item.caption" class="gallery-image" />
+                        <div v-else class="gallery-placeholder">
+                            <i class="fas fa-image"></i>
+                            <span>{{ item.name }}</span>
+                        </div>
+                        <div class="gallery-caption">{{ item.caption }}</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2>Hubungi Kami</h2>
+                <p>Siap membantu dan menjawab pertanyaan Anda tentang program dan cara berdonasi.</p>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Alamat Lokasi</h3>
+                        <p>{{ contactInfo.address }}</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-building"></i>
+                        <h3>Sekretariat</h3>
+                        <p>{{ contactInfo.secretariat }}</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <h3>Narahubung</h3>
+                        <p>0811-3202-8888 (Mustofa Syafiq)</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-globe"></i>
+                        <h3>Website</h3>
+                        <p><a :href="contactInfo.website" target="_blank">{{ contactInfo.website }}</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Yayasan Taman Lentera Surga</h3>
+                        <p>Menyediakan pendidikan Al-Qur'an yang inklusif untuk semua kalangan</p>
+                        <p>{{ legalInfo.sk }}</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Kontak</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> {{ contactInfo.address }}</p>
+                        <p><i class="fas fa-phone"></i> 0811-3202-8888</p>
+                        <p><i class="fas fa-globe"></i> <a :href="contactInfo.website" target="_blank">{{ contactInfo.website }}</a></p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Program</h3>
+                        <p>Romantisme Husnul Khotimah</p>
+                        <p>Senyum Disabilitas Indonesia</p>
+                        <p>Istana Yatim dan Dhuafa</p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 {{ organizationName }}. Semua hak dilindungi. Dibuat dengan ❤️ untuk kemajuan pendidikan Islam inklusif</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Floating Contact -->
+        <div class="floating-contact">
+            <a :href="phoneLink">
+                <i class="fab fa-whatsapp"></i>
+                <span class="sr-only">{{ contactButton }}</span>
+                WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+
+        createApp({
+            data() {
+                return {
+                    isScrolled: false,
+                    mobileMenuOpen: false,
+                    activeSection: 'hero',
+                    currentSlide: 0,
+                    slideInterval: null,
+                    
+                    // Hero Section
+                    heroTitle: 'Taman Al-Qur\'an Lansia dan Anak Istimewa',
+                    heroSubtitle: 'Menyediakan Akses Pendidikan Al-Qur\'an dan Tahfizh Inklusif untuk Lansia, Penyandang Disabilitas, Anak Yatim, dan Dhuafa di Jember',
+                    ctaText: 'Donasi Sekarang',
+                    
+                    // ===============================
+                    // BAGIAN KONFIGURASI GAMBAR
+                    // ===============================
+                    
+                    // LOGO YAYASAN
+                    // Ganti null dengan path gambar logo Anda
+                    logoImage: 'logo.png', // Contoh: 'images/logo-yayasan.png'
+                    showLogoPlaceholder: false, // Set false jika sudah ada logo
+                    logoInitials: 'TLS',
+                    
+                    // HERO BACKGROUND IMAGE
+                    // Tambahkan gambar background untuk hero section
+                    heroBackgroundImage: 'hero.png', // Contoh: 'images/hero-background.jpg'
+                    
+                    // QRIS CODE IMAGE
+                    // Ganti null dengan path gambar QRIS
+                    qrisImage: 'qris.png', // Contoh: 'images/qris-donasi.png'
+                    
+                    // ABOUT SECTION IMAGE
+                    // Gambar untuk bagian tentang yayasan
+                    aboutImage: 'tentang.png', // Contoh: 'images/about-yayasan.jpg'
+                    
+                    // ===============================
+                    // SLIDER IMAGES
+                    // ===============================
+                    slides: [
+                        {
+                            title: 'Pembangunan Gedung Utama',
+                            description: 'Progres pembangunan gedung utama Taman Al-Qur\'an dengan fasilitas lengkap dan ramah disabilitas',
+                            image: 'gambar1.png' // TAMBAHKAN GAMBAR DI SINI
+                        },
+                        {
+                            title: 'Kegiatan Pembelajaran',
+                            description: 'Suasana pembelajaran Al-Qur\'an yang inklusif untuk lansia, penyandang disabilitas, dan anak yatim',
+                            image: 'images/slider/kegiatan-belajar.jpg' // TAMBAHKAN GAMBAR DI SINI
+                        },
+                        {
+                            title: 'Fasilitas Hunian',
+                            description: 'Hunian yang nyaman dan aman untuk para santri dengan berbagai kebutuhan khusus',
+                            image: 'images/slider/hunian.jpg' // TAMBAHKAN GAMBAR DI SINI
+                        },
+                        {
+                            title: 'Workshop & Pelatihan',
+                            description: 'Program workshop metode hafalan Al-Qur\'an dan pengembangan keterampilan',
+                            image: 'images/slider/workshop.jpg' // TAMBAHKAN GAMBAR DI SINI
+                        },
+                        {
+                            title: 'Infrastruktur Pendukung',
+                            description: 'Pembangunan jembatan, pengurukan, dan fasilitas infrastruktur pendukung lainnya',
+                            image: 'images/slider/infrastruktur.jpg' // TAMBAHKAN GAMBAR DI SINI
+                        }
+                    ],
+                    
+                    // About Content
+                    aboutContent: [
+                        'Kabupaten Jember merupakan salah satu wilayah di Jawa Timur dengan populasi mayoritas Muslim. Sayangnya, akses terhadap pendidikan Islam yang layak masih belum merata, terutama bagi lansia, penyandang disabilitas, anak yatim, dan kaum dhuafa.',
+                        'Kelompok-kelompok ini sering kali terpinggirkan dari program pendidikan yang ada, khususnya dalam bidang pendidikan Al-Qur\'an dan tahfizh.',
+                        'Melihat realitas ini, Yayasan Taman Lentera Surga berinisiatif mendirikan Taman Lansia dan Disabilitas yang berfokus pada pendidikan Al-Qur\'an dan tahfizh untuk lansia, penyandang disabilitas, anak yatim, dan dhuafa yang berlandaskan akidah ahlus sunnah wal jama\'ah.',
+                        'Taman ini akan berupaya menyediakan pendidikan komprehensif bagi mereka yang membutuhkan sebagai wujud kepedulian sosial dan implementasi nilai-nilai Islam yang inklusif.'
+                    ],
+                    
+                    // ===============================
+                    // PROGRAM IMAGES
+                    // ===============================
+                    programs: [
+                        {
+                            title: 'Romantisme Husnul Khotimah',
+                            icon: 'fas fa-heart',
+                            image: 'images/programs/lansia-program.jpg', // TAMBAHKAN GAMBAR PROGRAM LANSIA
+                            features: [
+                                'Pendidikan Al-Qur\'an dan agama bagi lansia',
+                                'Metode pengajaran yang mudah dipahami dan ramah usia',
+                                'Fasilitas belajar yang nyaman dan mendukung kebutuhan lansia',
+                                'Program kesehatan dan konseling spiritual'
+                            ]
+                        },
+                        {
+                            title: 'Senyum Disabilitas Indonesia',
+                            icon: 'fas fa-hands-helping',
+                            image: 'images/programs/disabilitas-program.jpg', // TAMBAHKAN GAMBAR PROGRAM DISABILITAS
+                            features: [
+                                'Pendidikan Inklusif untuk Penyandang Disabilitas',
+                                'Kurikulum yang disesuaikan dengan kebutuhan khusus',
+                                'Sarana belajar yang aksesibel, seperti buku braille dan ruang kelas ramah disabilitas',
+                                'Terapi dan pendampingan khusus'
+                            ]
+                        },
+                        {
+                            title: 'Istana Yatim dan Dhuafa',
+                            icon: 'fas fa-home',
+                            image: 'images/programs/yatim-dhuafa-program.jpg', // TAMBAHKAN GAMBAR PROGRAM YATIM DHUAFA
+                            features: [
+                                'Program tahfizh intensif',
+                                'Bimbingan psikologis dan pendidikan karakter',
+                                'Pemberian beasiswa dan bantuan pendidikan',
+                                'Pembinaan leadership dan entrepreneur',
+                                'Hunian dan fasilitas lengkap'
+                            ]
+                        }
+                    ],
+                    
+                    // ===============================
+                    // FACILITIES IMAGES
+                    // ===============================
+                    facilities: [
+                        {
+                            name: 'Taman Belajar',
+                            description: 'Tempat yang nyaman untuk belajar agama dan Al-Qur\'an dengan fasilitas modern',
+                            image: null // TAMBAHKAN GAMBAR FASILITAS
+                        },
+                        {
+                            name: 'Hunian Inklusif',
+                            description: 'Hunian terpisah untuk lansia, disabilitas, anak yatim, dan dhuafa, dengan fasilitas kamar mandi yang ramah disabilitas',
+                            image: null // TAMBAHKAN GAMBAR FASILITAS
+                        },
+                        {
+                            name: 'Aula Serbaguna',
+                            description: 'Digunakan untuk kegiatan keagamaan, sosial, dan program pengembangan diri',
+                            image: null // TAMBAHKAN GAMBAR FASILITAS
+                        },
+                        {
+                            name: 'Layanan Kesehatan',
+                            description: 'Klinik sederhana untuk pemeriksaan kesehatan dan layanan konseling bagi santri',
+                            image: null // TAMBAHKAN GAMBAR FASILITAS
+                        },
+                        {
+                            name: 'Masjid Tabassam',
+                            description: 'Masjid inklusif yang ramah disabilitas dengan miniatur Kakbah untuk pembelajaran',
+                            image: 'Masjid.png' // TAMBAHKAN GAMBAR FASILITAS
+                        },
+                        {
+                            name: 'Perpustakaan',
+                            description: 'Koleksi lengkap buku-buku Islam, Al-Qur\'an braille, dan materi pembelajaran',
+                            image: null // TAMBAHKAN GAMBAR FASILITAS
+                        }
+                    ],
+                    
+                    // ===============================
+                    // TEAM MEMBERS WITH PHOTOS
+                    // ===============================
+                    teamMembers: [
+                        {
+                            name: 'KH. Abuhasanuddin, S.Pd Alhafizh',
+                            position: 'Dewan Pembina',
+                            description: 'Ketua Yayasan Ibnu Katsir, berpengalaman 20 tahun mengelola berbagai pesantren tahfizh',
+                            photo: 'ustabu.png' // TAMBAHKAN FOTO ANGGOTA TIM
+                        },
+                        {
+                            name: 'KH. Ir. M Thamrin Ali Yasin',
+                            position: 'Dewan Pengawas',
+                            description: 'Tokoh Nahdlatul Ulama Jember',
+                            photo: 'foto.jpg' // TAMBAHKAN FOTO ANGGOTA TIM
+                        },
+                        {   name: 'KH. Kusno, S.Ag., M.Pd.I',
+                            position: 'Dewan Pengawas',
+                            description: 'Tokoh Muhammadiyah Jember',
+                            photo: 'ifoto.jpg' // TAMBAHKAN FOTO ANGGOTA TIM
+                        },
+                        {
+                            name: 'KH. Hamid Hasbullah',
+                            position: 'Penasehat',
+                            description: 'Pengasuh Pesantren, Ketua LPAI Jember',
+                            photo: 'foto.jpg' // TAMBAHKAN FOTO ANGGOTA TIM
+                        },
+                        {
+                            name: 'Ust Agus Rohmawan, SE',
+                            position: 'Ketua Yayasan',
+                            description: 'Berpengalaman 20 tahun mengelola berbagai pesantren tahfizh dan pendampingan Disabilitas',
+                            photo: 'foto.jpg' // TAMBAHKAN FOTO ANGGOTA TIM
+                        }
+                    ],
+                    
+                    // Budget & Funding Data
+                    budgetAmount: 'Rp 997.337.982',
+                    budgetAmountNumber: 997337982,
+                    currentFunds: 53000000,
+                    
+                    // Funding Updates
+                  //        fundingUpdates: [
+                    //    {
+                     //       date: 'Jan 2025',
+                    //        amount: 20000000,
+                     //       description: ''
+                    //    },
+                    //    {
+                     //       date: 'Feb 2025', 
+                     //       amount: 80000000,
+                     //       description: 'Donasi dari program galang dana online dan infaq masyarakat'
+                      //  },
+                      //  {
+                       //     date: 'Mar 2025',
+                      //      amount: 40000000,
+                      //      description: 'Bantuan dari komunitas dan donatur baru'
+                      //  } 
+                   // ],
+                    
+                    // Donor Statistics
+                    totalDonors: 147,
+                    monthlyDonors: 23,
+                    avgDonation: 'Rp 1.67M',
+                    daysLeft: 180,
+                    
+                    fundingSources: [
+                        'Hasil Usaha produktif',
+                        'Infaq/sedekah masyarakat',
+                        'Para muhsinin tetap',
+                        'Sumber dana lain yang halal'
+                    ],
+                    
+                    // Banking & QRIS
+                    bankAccount: 'BS: 726 512 2188',
+                    accountName: 'Yayasan Taman Lentera Surga',
+                    
+                    // ===============================
+                    // GALLERY IMAGES
+                    // ===============================
+                    galleryItems: [
+                        { 
+                            name: 'Gedung Utama', 
+                            caption: 'Pembangunan Gedung Utama',
+                            image: 'images/gallery/gedung-utama.jpg' // TAMBAHKAN GAMBAR GALERI
+                        },
+                        { 
+                            name: 'Rumah Pengurus', 
+                            caption: 'Fasilitas Hunian Pengurus',
+                            image: 'images/gallery/rumah-pengurus.jpg' // TAMBAHKAN GAMBAR GALERI
+                        },
+                        { 
+                            name: 'Lokasi Tanah', 
+                            caption: 'Lokasi Strategis di Jember',
+                            image: 'images/gallery/lokasi-tanah.jpg' // TAMBAHKAN GAMBAR GALERI
+                        },
+                    
+                        { 
+                            name: 'Pengurukan', 
+                            caption: 'Proses Pengurukan Tanah',
+                            image: 'images/gallery/pengurukan.jpg' // TAMBAHKAN GAMBAR GALERI
+                        },
+                        { 
+                            name: 'Workshop', 
+                            caption: 'Workshop Metode Hafalan',
+                            image: 'images/gallery/workshop.jpg' // TAMBAHKAN GAMBAR GALERI
+                        },
+                        { 
+                            name: 'Jembatan', 
+                            caption: 'Pembangunan Infrastruktur',
+                            image: 'images/gallery/jembatan.jpg' // TAMBAHKAN GAMBAR GALERI
+                        },
+                        { 
+                            name: 'Jembatan Talenta', 
+                            caption: 'Jembatan Penghubung',
+                            image: 'images/gallery/jembatan-talenta.jpg' // TAMBAHKAN GAMBAR GALERI
+                        }
+                    ],
+                    
+                    // Contact & Organization Info
+                    contactInfo: {
+                        address: 'Jl. Wolter Monginsidi, Sumber Salak, Kranjingan, Kec. Sumbersari, Jember',
+                        secretariat: 'Sekretariat: Jl. Kartini no. 7, Jember (Samping alun-alun Jember)',
+                        website: 's.id/talentafizh'
+                    },
+                    legalInfo: {
+                        sk: 'SK KEMENKUMHAM: AHU-0025341.AH.01.12.TAHUN 2023'
+                    },
+                    organizationName: 'Yayasan Taman Lentera Surga',
+                    contactButton: 'Hubungi Kami: 0811-3202-8888 Mustofa Syafiq',
+                    phoneLink: 'https://wa.me/6281132028888'
+                }
+            },
+            computed: {
+                progressPercentage() {
+                    return Math.round((this.currentFunds / this.budgetAmountNumber) * 100);
+                },
+                remainingFunds() {
+                    return this.budgetAmountNumber - this.currentFunds;
+                }
+            },
+            mounted() {
+                this.handleScroll();
+                window.addEventListener('scroll', this.handleScroll);
+                this.observeSections();
+                this.startSlideshow();
+            },
+            beforeUnmount() {
+                window.removeEventListener('scroll', this.handleScroll);
+                this.stopSlideshow();
+            },
+            methods: {
+                handleScroll() {
+                    this.isScrolled = window.scrollY > 50;
+                },
+                toggleMobileMenu() {
+                    this.mobileMenuOpen = !this.mobileMenuOpen;
+                },
+                scrollTo(elementId) {
+                    const element = document.getElementById(elementId);
+                    if (element) {
+                        element.scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        this.mobileMenuOpen = false;
+                    }
+                },
+                nextSlide() {
+                    this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+                    this.resetSlideshow();
+                },
+                prevSlide() {
+                    this.currentSlide = this.currentSlide === 0 ? this.slides.length - 1 : this.currentSlide - 1;
+                    this.resetSlideshow();
+                },
+                goToSlide(index) {
+                    this.currentSlide = index;
+                    this.resetSlideshow();
+                },
+                startSlideshow() {
+                    this.slideInterval = setInterval(() => {
+                        this.nextSlide();
+                    }, 5000);
+                },
+                stopSlideshow() {
+                    if (this.slideInterval) {
+                        clearInterval(this.slideInterval);
+                    }
+                },
+                resetSlideshow() {
+                    this.stopSlideshow();
+                    this.startSlideshow();
+                },
+                formatCurrency(amount) {
+                    return 'Rp ' + amount.toLocaleString('id-ID');
+                },
+                observeSections() {
+                    const sections = ['hero', 'donate', 'about', 'programs', 'facilities', 'team', 'budget', 'gallery', 'contact'];
+                    const observer = new IntersectionObserver(
+                        (entries) => {
+                            entries.forEach((entry) => {
+                                if (entry.isIntersecting) {
+                                    this.activeSection = entry.target.id;
+                                }
+                            });
+                        },
+                        {
+                            threshold: 0.3,
+                            rootMargin: '-100px 0px -100px 0px'
+                        }
+                    );
+
+                    sections.forEach((id) => {
+                        const element = document.getElementById(id);
+                        if (element) {
+                            observer.observe(element);
+                        }
+                    });
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
